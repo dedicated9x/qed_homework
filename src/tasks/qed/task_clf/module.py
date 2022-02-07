@@ -24,11 +24,6 @@ class QedModule(BaseModule):
     def __init__(self, config=None):
         super(QedModule, self).__init__(config)
 
-        # csv_paths = {
-        #     "train": r"# C:\temp\qed\raw\cybersecurity_training\cybersecurity_training.csv",
-        #     "test": r"# C:\temp\qed\raw\cybersecurity_test\cybersecurity_test.csv"
-        # }
-
         path_data = self._get_path_data()
         path_train = path_data / "cybersecurity_training.csv"
         path_test = path_data / "cybersecurity_test.csv"

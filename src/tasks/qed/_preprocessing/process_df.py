@@ -4,7 +4,9 @@ import pandas as pd
 import hydra
 import omegaconf
 
-import src.tasks.qed._preprocessing._dictionaries as _dictionaries
+import src.tasks.qed._preprocessing._encoding as module_encoding
+import src.tasks.qed._preprocessing._feature_selection as module_feature_selection
+import src.tasks.qed._preprocessing._imputation as module_imputation
 
 
 def have_mapped_columns(df_train, df_test):
@@ -32,16 +34,16 @@ def process_df(df, config, tag: str):
         buffer_label = df["notified"]
 
     # Feature selection
-    selection = _dictionaries.tag2selection[config.dataset.selection]
+    selection = module_feature_selection.tag2selection[config.dataset.selection]
     df = df[selection]
 
     # Data imputation
-    for col_name in _dictionaries.list_incomplete_columns:
+    for col_name in module_imputation.list_incomplete_columns:
         if col_name in df.columns.to_list():
             df = imput_mean_and_mask(df, col_name)
 
     # Encode cathegorical variables
-    df = encode(df, _dictionaries.encoding)
+    df = encode(df, module_encoding.encoding)
 
     # We have to be ensured that target is at the end of dataframe.
     if tag == "train":

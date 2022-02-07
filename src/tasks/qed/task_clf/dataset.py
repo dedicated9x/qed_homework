@@ -7,19 +7,9 @@ import hydra
 
 from src.common.utils import pprint_sample
 from src.tasks.qed._preprocessing.process_df import process_df
+import src.tasks.qed._preprocessing._normalization as module_normalization
 
-STATS = {
-    'correlatedcount': {'skewed': True, 'mean': 170.31, 'std': 5209.46},
-    'srcip_cd': {'skewed': True, 'mean': 18.42, 'std': 228.76},
-    'dstip_cd': {'skewed': True, 'mean': 10.1, 'std': 254.94},
-    'srcport_cd': {'skewed': True, 'mean': 54.62, 'std': 794.02},
-    'dstport_cd': {'skewed': True, 'mean': 9.95, 'std': 206.13},
-    'domain_cd': {'skewed': True, 'mean': 1.09, 'std': 76.63},
-    'protocol_cd': {'skewed': True, 'mean': 0.46, 'std': 11.57},
-    'thrcnt_month': {'skewed': False, 'mean': 4962.43, 'std': 6930.01},
-    'thrcnt_week': {'skewed': False, 'mean': 1483.98, 'std': 1838.28},
-    'thrcnt_day': {'skewed': False, 'mean': 237.18, 'std': 301.41}
-}
+
 
 
 def get_split_mask(df: pd.DataFrame, type_dest, idx_fold, n_folds=5) -> pd.Series:
@@ -60,7 +50,7 @@ class QedDataset(torch.utils.data.Dataset):
 
         # Normalization
         if config.dataset.standarize == True:
-            self.df = self._standarize_df(df=self.df, col2stats=STATS)
+            self.df = self._standarize_df(df=self.df, col2stats=module_normalization.dict_feat_stats)
 
     def _standarize_df(self, df, col2stats):
         for col, stats in col2stats.items():
