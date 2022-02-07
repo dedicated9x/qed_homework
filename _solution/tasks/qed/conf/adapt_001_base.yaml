@@ -1,0 +1,8 @@
+defaults:
+  - 005_shallow_std
+
+main:
+  module_name: QedAdaptModule
+
+optimizer:
+  use_scheduler: false

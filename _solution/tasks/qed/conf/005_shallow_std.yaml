@@ -1,0 +1,5 @@
+defaults:
+  - 004_shallow_32
+
+dataset:
+  standarize: true

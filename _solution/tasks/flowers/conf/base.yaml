@@ -1,0 +1,18 @@
+defaults:
+  - ..\..\..\common\conf\base
+
+main:
+  module_name: FlowersModule
+  is_tested: true
+
+optimizer:
+  lr: 0.00001
+
+trainer:
+  max_epochs: 20
+  batch_size: 16
+  device: [0]
+  wandb: true
+  monitored_metric:
+    name: "Val/Acc1"
+    mode: max

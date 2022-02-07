@@ -1,0 +1,12 @@
+hydra:
+  run:
+    dir: /c/Users/devoted/Documents/repos/.hydra_outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  output_subdir: null
+
+trainer:
+  device: [0]
+  monitored_metric: null
+  wandb: false
+
+
+

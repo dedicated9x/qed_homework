@@ -1,0 +1,5 @@
+defaults:
+  - 002_shallow_weight
+
+model:
+  last_act: sigmoid

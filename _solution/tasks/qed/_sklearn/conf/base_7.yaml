@@ -1,0 +1,15 @@
+hydra:
+  run:
+    dir: /c/Users/devoted/Documents/repos/.hydra_outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  output_subdir: null
+
+description: ultra_base
+
+paths:
+  train: raw/cybersecurity_training/cybersecurity_training.csv
+  test: raw/cybersecurity_test/cybersecurity_test.csv
+
+dataset:
+  selection: 7
+
+

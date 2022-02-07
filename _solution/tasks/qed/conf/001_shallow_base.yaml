@@ -1,0 +1,16 @@
+defaults:
+  - 000_base
+
+model:
+  dims: [16, 16]
+
+optimizer:
+  lr: 0.0003
+
+trainer:
+  batch_size: 64
+
+
+
+
+

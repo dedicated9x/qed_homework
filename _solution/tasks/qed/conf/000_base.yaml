@@ -1,0 +1,35 @@
+defaults:
+  - setup
+
+main:
+  module_name: QedModule
+
+wandb:
+  name: base
+
+optimizer:
+  lr: 0.0001
+  use_scheduler: false
+
+trainer:
+  device: [0]
+  max_epochs: 50
+  batch_size: 128
+  wandb: true
+  monitored_metric:
+    name: "Val/AUC"
+    mode: max
+
+model:
+  dims: [12, 8]
+  loss_balanced: false
+  last_act: relu
+
+dataset:
+  selection: 32
+  split_idx: 31541
+  idx_fold: 0
+  standarize: false
+
+
+

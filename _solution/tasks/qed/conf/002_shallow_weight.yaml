@@ -1,0 +1,5 @@
+defaults:
+  - 001_shallow_base
+
+model:
+  loss_balanced: true

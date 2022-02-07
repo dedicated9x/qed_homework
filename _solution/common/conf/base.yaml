@@ -1,0 +1,20 @@
+hydra:
+  run:
+    dir: /c/Users/devoted/Documents/repos/.hydra_outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  output_subdir: null
+
+main:
+  is_tested: false
+
+trainer:
+  device: [0]
+  max_epochs: null
+  monitored_metric: null
+  wandb: false
+  limit_train_batches: 1.0
+
+optimizer:
+  use_scheduler: false
+
+
+

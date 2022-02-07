@@ -1,0 +1,9 @@
+defaults:
+  - 003_shallow_sigmoid
+
+model:
+  dims: [33, 32, 32, 1]
+
+optimizer:
+  lr: 0.003
+  use_scheduler: true
