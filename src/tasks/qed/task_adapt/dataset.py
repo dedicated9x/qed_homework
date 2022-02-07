@@ -1,8 +1,9 @@
+from pathlib import Path
 import torch
 import torch.utils.data
 import hydra
+
 from src.common.utils import pprint_sample
-from src.tasks.qed.utils.paths import LIST_CSV_PATHS
 from src.tasks.qed.task_clf.dataset import QedDataset
 
 
@@ -10,8 +11,12 @@ class PairDataset(torch.utils.data.Dataset):
     def __init__(self, config, role):
         assert role in ["train", "val"]
 
-        self.ds_train = QedDataset(config, csv_path=LIST_CSV_PATHS["train"], role="train")
-        self.ds_test = QedDataset(config, csv_path=LIST_CSV_PATHS["test"], role="test")
+        path_data = self._get_path_data()
+        path_train = path_data / "cybersecurity_training.csv"
+        path_test = path_data / "cybersecurity_test.csv"
+
+        self.ds_train = QedDataset(config, csv_path=path_train, role="train")
+        self.ds_test = QedDataset(config, csv_path=path_test, role="test")
 
         # Save parameters
         self.role = role
@@ -35,8 +40,11 @@ class PairDataset(torch.utils.data.Dataset):
             "z": sample_test["x"],
         }
 
+    def _get_path_data(self):
+        return Path(__file__).parent.parent.parent.parent.parent / "data"
 
-@hydra.main(config_path="../qed/conf", config_name="005_shallow_std")
+
+@hydra.main(config_path="../conf", config_name="005_shallow_std")
 def display_sample(config):
     config.dataset.standarize = True
 

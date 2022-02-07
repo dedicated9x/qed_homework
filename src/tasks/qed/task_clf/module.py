@@ -1,5 +1,6 @@
 from typing import Dict
 
+from pathlib import Path
 import torch
 import torch.nn as nn
 import torch.optim
@@ -23,13 +24,18 @@ class QedModule(BaseModule):
     def __init__(self, config=None):
         super(QedModule, self).__init__(config)
 
-        csv_paths = {
-            "train": r"C:\temp\qed\raw\cybersecurity_training\cybersecurity_training.csv",
-            "test": r"C:\temp\qed\raw\cybersecurity_test\cybersecurity_test.csv"
-        }
-        self.ds_train = QedDataset(config, csv_path=csv_paths["train"], role="train")
-        self.ds_val = QedDataset(config, csv_path=csv_paths["train"], role="val")
-        self.ds_test = QedDataset(config, csv_path=csv_paths["test"], role="test")
+        # csv_paths = {
+        #     "train": r"# C:\temp\qed\raw\cybersecurity_training\cybersecurity_training.csv",
+        #     "test": r"# C:\temp\qed\raw\cybersecurity_test\cybersecurity_test.csv"
+        # }
+
+        path_data = self._get_path_data()
+        path_train = path_data / "cybersecurity_training.csv"
+        path_test = path_data / "cybersecurity_test.csv"
+
+        self.ds_train = QedDataset(config, csv_path=path_train, role="train")
+        self.ds_val = QedDataset(config, csv_path=path_train, role="val")
+        self.ds_test = QedDataset(config, csv_path=path_test, role="test")
 
         self.model = QedNet(config)
         self.loss_fnc = nn.BCELoss(reduction='none')
@@ -72,3 +78,6 @@ class QedModule(BaseModule):
 
         if self.config.optimizer.use_scheduler == True:
             self._scheduler_log()
+
+    def _get_path_data(self):
+        return Path(__file__).parent.parent.parent.parent.parent / "data"

@@ -13,7 +13,6 @@ class QedAdaptModule(BaseModule):
     def __init__(self, config=None):
         super(QedAdaptModule, self).__init__(config)
 
-        # TODO i tak musi byc inny base
         self.ds_train = PairDataset(config, role="train")
         self.ds_val = PairDataset(config, role="val")
 
