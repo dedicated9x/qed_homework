@@ -6,7 +6,7 @@ import torch.utils.data
 import hydra
 
 from src.common.utils import pprint_sample
-from src.tasks.qed.preprocessing.process_df import process_df
+from src.tasks.qed._preprocessing.process_df import process_df
 
 STATS = {
     'correlatedcount': {'skewed': True, 'mean': 170.31, 'std': 5209.46},

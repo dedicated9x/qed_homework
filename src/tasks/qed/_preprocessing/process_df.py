@@ -4,7 +4,7 @@ import pandas as pd
 import hydra
 import omegaconf
 
-import src.tasks.qed.preprocessing._dictionaries as _dictionaries
+import src.tasks.qed._preprocessing._dictionaries as _dictionaries
 
 
 def have_mapped_columns(df_train, df_test):

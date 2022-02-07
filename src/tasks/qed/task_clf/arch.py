@@ -2,7 +2,7 @@ from collections import OrderedDict
 import torch
 import torch.nn as nn
 
-from src.tasks.qed.utils.utils import ClampedRelu
+from src.tasks.qed._functional.layers import ClampedRelu
 
 
 class HiddenLinear(nn.Module):

@@ -1,6 +1,8 @@
 import numpy as np
 import hydra
-from _solution.tasks.qed.dataset import QedDataset, get_split_mask
+
+from src.tasks.qed.task_clf.dataset import get_split_mask
+from src.tasks.qed.task_clf.module import QedModule
 
 
 def is_valid_split(df):
@@ -22,9 +24,10 @@ def are_folds_valid(df):
     list_masks = [get_split_mask(df, type_dest="val", idx_fold=i) for i in range(5)]
     return (np.stack(list_masks).mean(axis=0) == 0.2).all()
 
-@hydra.main(config_path="../conf", config_name="005_shallow_std")
+@hydra.main(config_path="../tasks/qed/conf", config_name="005_shallow_std")
 def _test(config):
-    ds = QedDataset(config, max_idx=config.dataset.split_idx)
+    module = QedModule(config)
+    ds = module.ds_train
     df = ds._df_all
 
     assert is_valid_split(df)

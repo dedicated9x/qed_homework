@@ -86,15 +86,12 @@ def main():
     x = torch.load(path_data / "x.pickle")
     y = torch.load(path_data / "y.pickle")
 
-    # y = torch.cat([y, y])
-
     loss = MMD_loss(bandwidth_list=[20, 30, 40, 100])
 
     l1 = loss(source=x, target=y)
     l2 = MMD(x, y, "rbf")
-    print(l1, l2) #tensor(3.9670)
+    print(l1, l2)
 
-    a = 2
 
 if __name__ == '__main__':
     main()
