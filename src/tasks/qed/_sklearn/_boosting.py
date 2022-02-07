@@ -7,7 +7,7 @@ import torchmetrics.functional
 import omegaconf
 import hydra
 
-from _solution.tasks.qed.preprocessing.process_df import get_data
+from src.tasks.qed.preprocessing.process_df import get_data
 
 
 def get_mask_train_idxs(labels: pd.Series, idx_fold, n_folds=5):

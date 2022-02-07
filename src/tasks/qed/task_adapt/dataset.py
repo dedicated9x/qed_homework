@@ -1,9 +1,9 @@
 import torch
 import torch.utils.data
 import hydra
-from _solution.common.utils import pprint_sample
-from _solution.tasks.qed.utils.paths import LIST_CSV_PATHS
-from _solution.tasks.qed.task_clf.dataset import QedDataset
+from src.common.utils import pprint_sample
+from src.tasks.qed.utils.paths import LIST_CSV_PATHS
+from src.tasks.qed.task_clf.dataset import QedDataset
 
 
 class PairDataset(torch.utils.data.Dataset):

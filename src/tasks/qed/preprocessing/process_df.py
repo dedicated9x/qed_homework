@@ -4,11 +4,12 @@ import pandas as pd
 import hydra
 import omegaconf
 
-import _solution.tasks.qed.preprocessing._dictionaries as _dictionaries
+import src.tasks.qed.preprocessing._dictionaries as _dictionaries
 
 
 def have_mapped_columns(df_train, df_test):
     return df_train.columns.to_list() == (df_test.columns.to_list() + ["notified"])
+
 
 def imput_mean_and_mask(df: pd.DataFrame, col_name: str) -> pd.DataFrame:
     mean = df[col_name].mean()

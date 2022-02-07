@@ -1,7 +1,9 @@
 from collections import OrderedDict
 import torch
 import torch.nn as nn
-from _solution.tasks.qed.utils.utils import ClampedRelu
+
+from src.tasks.qed.utils.utils import ClampedRelu
+
 
 class HiddenLinear(nn.Module):
     def __init__(self, hidden_dim):
@@ -63,16 +65,3 @@ class QedNet(nn.Module):
         # Postprocessing
         x = x.flatten()
         return x
-
-
-# TODO https://towardsdatascience.com/how-dis-similar-are-my-train-and-test-data-56af3923de9b
-
-# TODO dodaj dropouty (bo w koncu w nie wierzysz)
-# TODO i batch-normy 0 wszystkie kombinacje
-
-# TODO trenowalne embeddingi
-
-# TODO ten trik z IEEE_CIS Fraud Detection
-"""
-63 / 69 / 0.71
-"""

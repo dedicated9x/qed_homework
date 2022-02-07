@@ -1,7 +1,7 @@
-import pytorch_lightning as pl
 import math
 import torch
 import torch.utils.data
+import pytorch_lightning as pl
 
 
 class BaseModule(pl.LightningModule):

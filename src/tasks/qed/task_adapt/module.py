@@ -3,9 +3,10 @@ import torch.nn as nn
 import torch.optim
 import torch.utils.data
 import torchmetrics.functional
-from _solution.common.module import BaseModule
-from _solution.tasks.qed.task_clf.arch import QedNet
-from _solution.tasks.qed.task_adapt.dataset import PairDataset
+
+from src.common.module import BaseModule
+from src.tasks.qed.task_clf.arch import QedNet
+from src.tasks.qed.task_adapt.dataset import PairDataset
 
 
 class QedAdaptModule(BaseModule):

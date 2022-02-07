@@ -1,13 +1,15 @@
-from typing import Dict, List
+from typing import Dict
 
 import torch
 import torch.nn as nn
 import torch.optim
 import torch.utils.data
 import torchmetrics.functional
-from _solution.tasks.qed.task_clf.dataset import QedDataset
-from _solution.common.module import BaseModule
-from _solution.tasks.qed.task_clf.arch import QedNet
+
+from src.tasks.qed.task_clf.dataset import QedDataset
+from src.common.module import BaseModule
+from src.tasks.qed.task_clf.arch import QedNet
+
 
 def weighted_loss(loss_unweighted, y, weights: Dict[str, float]):
     w = torch.where(y > 0.5, weights["1"], weights["0"])
@@ -15,6 +17,7 @@ def weighted_loss(loss_unweighted, y, weights: Dict[str, float]):
     w = w.shape[0] * w
     loss_weighted = w * loss_unweighted
     return loss_weighted
+
 
 class QedModule(BaseModule):
     def __init__(self, config=None):

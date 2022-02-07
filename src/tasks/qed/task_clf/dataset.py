@@ -4,8 +4,9 @@ import sklearn.model_selection
 import torch
 import torch.utils.data
 import hydra
-from _solution.common.utils import pprint_sample
-from _solution.tasks.qed.preprocessing.process_df import process_df
+
+from src.common.utils import pprint_sample
+from src.tasks.qed.preprocessing.process_df import process_df
 
 STATS = {
     'correlatedcount': {'skewed': True, 'mean': 170.31, 'std': 5209.46},

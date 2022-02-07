@@ -1,5 +1,5 @@
-from _solution.tasks.qed.task_clf.module import QedModule
-from _solution.tasks.qed.task_adapt.module import QedAdaptModule
+from src.tasks.qed.task_clf.module import QedModule
+from src.tasks.qed.task_adapt.module import QedAdaptModule
 
 
 def modulename2cls(name):
