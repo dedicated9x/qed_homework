@@ -55,7 +55,7 @@ def main(config: omegaconf.DictConfig) -> None:
 
     model = train_single(
         df_train=data["train"],
-        model=GradientBoostingClassifier(random_state=0, max_depth=7),
+        model=GradientBoostingClassifier(random_state=0),
         feature_col_names=data["feature_col_names"],
         idx_fold=0
     )
