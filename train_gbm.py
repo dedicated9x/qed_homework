@@ -37,7 +37,7 @@ def train_single(df_train, model, feature_col_names, idx_fold):
     return model
 
 
-@hydra.main(config_path="conf", config_name="32")
+@hydra.main(config_path="src/tasks/qed/conf", config_name="000_gbm_32_feats")
 def main(config: omegaconf.DictConfig) -> None:
     print(omegaconf.OmegaConf.to_yaml(config))
 

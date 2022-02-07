@@ -53,10 +53,10 @@ def process_df(df, config, tag: str):
 
 
 def get_data(config):
-    path_root = Path(r"C:\temp\qed")
+    path_data = Path(__file__).parent.parent.parent.parent.parent / "data"
 
-    df_train = pd.read_csv(path_root / config.paths["train"], sep="|")
-    df_test = pd.read_csv(path_root / config.paths["test"], sep="|")
+    df_train = pd.read_csv(path_data / "cybersecurity_training.csv", sep="|")
+    df_test = pd.read_csv(path_data / "cybersecurity_test.csv", sep="|")
 
     df_train = process_df(df_train, config, "train")
     df_test = process_df(df_test, config, "test")

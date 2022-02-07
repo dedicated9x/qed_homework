@@ -1,0 +1,9 @@
+hydra:
+  run:
+    dir: /c/Users/devoted/Documents/repos/.hydra_outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}
+  output_subdir: null
+
+description: 32_features
+
+dataset:
+  selection: 32

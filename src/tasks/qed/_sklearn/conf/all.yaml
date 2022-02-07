@@ -1,9 +1,0 @@
-defaults:
-  - base_7
-
-description: all_features
-
-dataset:
-  selection: 50
-
-
