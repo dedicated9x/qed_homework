@@ -1,3 +1,7 @@
+"""
+Pawel Brysch is not the author of code below.
+"""
+
 from pathlib import Path
 import torch
 import torch.nn as nn
@@ -60,7 +64,7 @@ class MMD_loss(nn.Module):
         if fix_sigma:
             bandwidth = fix_sigma
         else:
-            bandwidth = torch.sum(L2_distance.data) / (n_samples ** 2 - n_samples) # Srednie L2 w podwojnym batchu.
+            bandwidth = torch.sum(L2_distance.data) / (n_samples ** 2 - n_samples) # Average L2 in "double" batch.
         bandwidth /= kernel_mul ** (kernel_num // 2)
         bandwidth_list = [bandwidth * (kernel_mul ** i) for i in range(kernel_num)]
         if self._bandwidth_list is not None:

@@ -15,7 +15,7 @@ trainer:
   device: [0]
   max_epochs: 50
   batch_size: 128
-  wandb: true
+  wandb: false
   monitored_metric:
     name: "Val/AUC"
     mode: max

@@ -4,21 +4,20 @@ conda env create -f env.yaml
 ```
 
 Step 2. Dataset downloading. <br>
-It should be done manually. Link: https://www.robots.ox.ac.uk/~vgg/data/flowers/17/index.html <br>
+It should be done manually. <br>
 Expected result is as follows 
 ```
 data/
-|-- datasplits.mat
-|-- 17flowers
-|   |-- jpg
-|   |   |-- files.txt
-|   |   |-- image_0001.jpg
-|   |   |-- image_0002.jpg
-|   |   |-- image_0003.jpg
-...
+|-- cybersecurity_test.csv
+|-- cybersecurity_training.csv
 ```
 
-Step 3. Training
+Step 3. Training. <br>
+In the case of gradient boosting:
 ```
-python run_experiment.py
+python train_gbm.py
+```
+or in the case of neural network:
+```
+python train_nn.py
 ```

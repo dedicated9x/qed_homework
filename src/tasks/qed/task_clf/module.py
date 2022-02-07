@@ -42,7 +42,6 @@ class QedModule(BaseModule):
         y_hat = self(x)
 
         loss = self.loss_fnc(y_hat, y)
-        # TODO ta proporcja jest jeszcze gorsza (w treningowym: 0.05 vs 0.95)
         if self.config.model.loss_balanced == True:
             loss = weighted_loss(loss, y, {"0": 0.15, "1": 0.85})
         loss = loss.mean()
