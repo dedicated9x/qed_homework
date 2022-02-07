@@ -5,7 +5,7 @@ from _solution.common.dispatch import modulename2cls
 from _solution.common.get_trainer import get_trainer
 
 
-@hydra.main(config_path="tasks/flowers/conf", config_name="base")
+@hydra.main(config_path="tasks/qed/conf", config_name="005_shallow_std")
 def main(config: omegaconf.DictConfig) -> None:
     print(omegaconf.OmegaConf.to_yaml(config))
 
@@ -25,3 +25,5 @@ def main(config: omegaconf.DictConfig) -> None:
 
 if __name__ == '__main__':
     main()
+
+# 0.73 -> 0.78
