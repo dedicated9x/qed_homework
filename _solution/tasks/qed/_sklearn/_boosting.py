@@ -1,20 +1,18 @@
-from pathlib import Path
 import numpy as np
 import pandas as pd
 import sklearn.model_selection
-from sklearn.ensemble import GradientBoostingClassifier
+import sklearn.ensemble
 import torch
 import torchmetrics.functional
 import omegaconf
 import hydra
-from _solution.tasks.qed.preprocessing.process_df import get_data
 
+from _solution.tasks.qed.preprocessing.process_df import get_data
 
 
 def get_mask_train_idxs(labels: pd.Series, idx_fold, n_folds=5):
     labels = labels.values.astype(np.int32)
     idxs = np.arange(len(labels))[:, np.newaxis]
-
     skf = sklearn.model_selection.StratifiedKFold(n_splits=n_folds, shuffle=True, random_state=0)
     list_masks = [
         {"train": t, "val": v}
@@ -38,32 +36,19 @@ def train_single(df_train, model, feature_col_names, idx_fold):
     print(f"VAL/auc={val_auc:.3f}")
     return model
 
-def create_predictions(df_test, model, config) -> None:
-    X_test = df_test.values
-    y_hat = model.predict_proba(X_test)[:, 1]
 
-    path_results = Path(r"C:\temp\qed\results") / f"{config.description}.txt"
-    text = "\n".join(y_hat.round(4).astype(str).tolist())
-    path_results.write_text(text)
-
-# @hydra.main(config_path="conf", config_name="s_base")
 @hydra.main(config_path="conf", config_name="32")
 def main(config: omegaconf.DictConfig) -> None:
-    # print(omegaconf.OmegaConf.to_yaml(config))
+    print(omegaconf.OmegaConf.to_yaml(config))
 
     data = get_data(config)
-
     model = train_single(
         df_train=data["train"],
-        model=GradientBoostingClassifier(random_state=0),
+        model=sklearn.ensemble.GradientBoostingClassifier(random_state=0),
         feature_col_names=data["feature_col_names"],
         idx_fold=0
     )
-    # create_predictions(data["test"], model, config)
-
 
 if __name__ == '__main__':
     main()
 
-"""VAL/auc=0.877"""
-# TODO zrob feature seelction
